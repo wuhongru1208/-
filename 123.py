@@ -1,18 +1,17 @@
 import pygame
-pygame.init()
 
-windowSize = [400, 300]
-screen = pygame.display.set_mode(windowSize)
-pygame.display.set_caption("Circles")
-colour = pygame.color.Color('#fcba03')
-background_color = pygame.color.Color('#292ec4')
+pygame.mixer.init()
 
-done = False
-while not done:
-    screen.fill(background_color)
-    pygame.draw.circle(screen, colour, [200, 150], 50)
-    pygame.display.flip()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
-pygame.quit()
+clock = pygame.time.Clock()
+
+crash = pygame.mixer.Sound('12274.wav')
+hit = pygame.mixer.Sound('hit.wav')
+
+count = 0
+while count < 200:
+    if count % 4 == 0:
+        crash.play()
+    else:
+        hit.play()
+    count += 1
+    clock.tick(2)
